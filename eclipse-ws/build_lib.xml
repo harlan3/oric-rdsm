@@ -1,0 +1,31 @@
+<project name="MyProject" basedir="." default="jar">
+    <!-- Define directories for convenience -->
+    <property name="src.dir" value="src"/>
+    <property name="classes.dir" value="classes"/>
+    <property name="dist.dir" value="dist"/>
+    <property name="lib.dir" value="lib"/>
+    
+    <!-- Clean task -->
+    <target name="clean">
+        <delete dir="${classes.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+    <!-- Compile task -->
+    <target name="compile" depends="clean">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" source="17" target="17" destdir="${classes.dir}" includeantruntime="false">
+        	<classpath>
+                <pathelement path="${lib.dir}/gson-1.7.jar"/>
+                <pathelement path="${lib.dir}/junit-4.13.2.jar"/>
+                <pathelement path="${lib.dir}/hamcrest-core-1.3.jar"/>
+            </classpath>
+        </javac>   
+    </target>
+
+    <!-- Jar task -->
+    <target name="jar" depends="compile">
+        <mkdir dir="${dist.dir}"/>
+        <jar destfile="${dist.dir}/oric_rdsm.jar" basedir="${classes.dir}"/>
+    </target>
+</project>

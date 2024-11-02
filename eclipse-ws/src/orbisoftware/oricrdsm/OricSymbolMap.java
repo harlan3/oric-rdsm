@@ -24,7 +24,7 @@ package orbisoftware.oricrdsm;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.HashMap;
-//import java.util.TreeMap; // Useful for debugging
+//import java.util.TreeMap; // Useful for debugging. Swap for existing HashMap.
 import java.util.Iterator;
 import java.util.Map;
 
@@ -894,7 +894,7 @@ public class OricSymbolMap {
                 */
                Field[] objFields = _class.getDeclaredFields();
                for (int n = 0; n < objFields.length; n++) {
-                  if (childName == objFields[n].getName()) {
+                  if (childName.equals(objFields[n].getName())) {
                      objFields[n].setAccessible(true);
                      field = objFields[n];
                      break;
